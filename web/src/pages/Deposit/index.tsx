@@ -1,10 +1,10 @@
 import * as S from './styles'
 
-export const Home: React.FC = () => {
+export const Deposit: React.FC = () => {
   return (
     <S.Container>
       <S.Title>
-        HOME
+        Deposíto
       </S.Title>
     </S.Container>
   )

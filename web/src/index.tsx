@@ -5,13 +5,16 @@ import App from './App';
 import GlobalStyle from './styles/global';
 
 import { VisibilityProvider } from "./providers/VisibilityProvider";
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <VisibilityProvider>
-      <App />
-      <GlobalStyle />
-    </VisibilityProvider>
+    <BrowserRouter>
+      <VisibilityProvider>
+        <App />
+        <GlobalStyle />
+      </VisibilityProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

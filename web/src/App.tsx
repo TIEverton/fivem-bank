@@ -1,6 +1,11 @@
 import React from 'react';
 import { debugData } from "./utils/debugData";
-import { Home } from './pages/Home'
+import { Menu } from './components/Menu';
+
+import * as S from './styles/app';
+import { SystemRoutes } from './routes';
+import { useVisibility } from './providers/VisibilityProvider';
+
 // This will set the NUI to visible if we are
 // developing in browser
 debugData([
@@ -12,10 +17,17 @@ debugData([
 
 
 const App: React.FC = () => {
+  const { visible } = useVisibility()
+
   return (
-    <div className="container-nui">
-      <Home />
-    </div>
+    <S.Container>
+      {visible && (
+        <S.Content>
+          <Menu />
+          <SystemRoutes />
+        </S.Content>
+      )}
+    </S.Container>
   );
 }
 

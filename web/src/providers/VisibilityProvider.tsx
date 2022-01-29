@@ -1,6 +1,7 @@
-import React, {Context, createContext, useContext, useEffect, useState} from "react";
-import {useNuiEvent} from "../hooks/useNuiEvent";
-import {fetchNui} from "../utils/fetchNui";
+import React, { Context, createContext, useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useNuiEvent } from "../hooks/useNuiEvent";
+import { fetchNui } from "../utils/fetchNui";
 
 const VisibilityCtx = createContext<VisibilityProviderValue | null>(null)
 
@@ -11,7 +12,8 @@ interface VisibilityProviderValue {
 
 // This should be mounted at the top level of your application, it is currently set to
 // apply a CSS visibility value. If this is non-performant, this should be customized.
-export const VisibilityProvider: React.FC = ({children}) => {
+export const VisibilityProvider: React.FC = ({ children }) => {
+  const history = useHistory()
   const [visible, setVisible] = useState(false)
 
   useNuiEvent<boolean>('setVisible', setVisible)
@@ -20,6 +22,8 @@ export const VisibilityProvider: React.FC = ({children}) => {
   useEffect(() => {
     // Only attach listener when we are visible
     if (!visible) return;
+
+    history.push('/')
 
     const keyHandler = (e: KeyboardEvent) => {
       if (["Backspace", "Escape"].includes(e.code)) {
@@ -30,6 +34,7 @@ export const VisibilityProvider: React.FC = ({children}) => {
     window.addEventListener("keydown", keyHandler)
 
     return () => window.removeEventListener("keydown", keyHandler)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible])
 
   return (
@@ -39,10 +44,8 @@ export const VisibilityProvider: React.FC = ({children}) => {
         setVisible
       }}
     >
-    <div style={{ visibility: visible ? 'visible' : 'hidden', height: '100%'}}>
       {children}
-    </div>
-  </VisibilityCtx.Provider>)
+    </VisibilityCtx.Provider>)
 }
 
 export const useVisibility = () => useContext<VisibilityProviderValue>(VisibilityCtx as Context<VisibilityProviderValue>)
