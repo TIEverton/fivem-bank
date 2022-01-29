@@ -1,9 +1,6 @@
 import React from 'react';
-import { Button } from './components/Button';
 import { debugData } from "./utils/debugData";
-
-import * as S from './styles'
-
+import { Home } from './pages/Home'
 // This will set the NUI to visible if we are
 // developing in browser
 debugData([
@@ -16,12 +13,9 @@ debugData([
 
 const App: React.FC = () => {
   return (
-    <S.Container>
-      <S.Content>
-
-        <Button />
-      </S.Content>
-    </S.Container>
+    <div className="container-nui">
+      <Home />
+    </div>
   );
 }
 
