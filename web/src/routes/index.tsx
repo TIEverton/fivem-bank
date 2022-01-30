@@ -3,14 +3,17 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Home } from '../pages/Home';
 import { Deposit } from '../pages/Deposit';
+import { Login } from '../pages/Login';
+import { DashboardLayout } from '../pages/layout/Dashboard';
 
-export function SystemRoutes() {
+export function Routes() {
   return (
-    <>
-      <Switch>
-        <Route path="/" exact component={Home} />
+    <Switch>
+      <Route path="/" exact component={Login} />
+      <DashboardLayout>
+        <Route path="/home" exact component={Home} />
         <Route path="/deposit" exact component={Deposit} />
-      </Switch>
-    </>
+      </DashboardLayout>
+    </Switch>
   );
 }
