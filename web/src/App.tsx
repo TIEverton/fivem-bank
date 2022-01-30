@@ -1,9 +1,8 @@
 import React from 'react';
 import { debugData } from "./utils/debugData";
-import { Menu } from './components/Menu';
 
 import * as S from './styles/app';
-import { SystemRoutes } from './routes';
+import { Routes } from './routes';
 import { useVisibility } from './providers/VisibilityProvider';
 
 // This will set the NUI to visible if we are
@@ -23,8 +22,7 @@ const App: React.FC = () => {
     <S.Container>
       {visible && (
         <S.Content>
-          <Menu />
-          <SystemRoutes />
+          <Routes />
         </S.Content>
       )}
     </S.Container>
