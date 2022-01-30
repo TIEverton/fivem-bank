@@ -11,7 +11,7 @@ export const Menu: React.FC = () => {
     <S.Container>
       <img src={logoImg} alt="CaixaBank" />
       <S.Items>
-        <S.Item to="/" activeClassName="active" exact>
+        <S.Item to="/home" activeClassName="active">
           <RiHome5Fill size="24" />
           HOME
         </S.Item>
